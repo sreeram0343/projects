@@ -1,137 +1,142 @@
-# Netflix Exploratory Data Analysis (EDA) Project
+# Netflix Exploratory Data Analysis (EDA)
 
-## 📊 Project Overview
+A comprehensive Python project for analyzing Netflix content data using pandas, matplotlib, and seaborn.
 
-This is a comprehensive Python project for analyzing Netflix content data using pandas, matplotlib, and seaborn. The project performs thorough exploratory data analysis on Netflix's content library, providing insights into content distribution, trends, and patterns.
+## Project Overview
 
-## 🎯 Project Goals
+This project performs exploratory data analysis on Netflix content data, including:
 
-The Netflix EDA project aims to:
-- **Clean and preprocess** Netflix content data
-- **Analyze content distribution** between Movies and TV Shows
-- **Identify release trends** over time
-- **Discover popular genres** and content categories
-- **Examine geographic distribution** of content
-- **Analyze duration patterns** for different content types
-- **Visualize rating distributions** across content
-- **Generate comprehensive reports** and visualizations
+- **Data Cleaning**: Handle missing values, convert data types, remove duplicates
+- **Content Analysis**: Movies vs TV Shows distribution
+- **Trend Analysis**: Release patterns over years and months
+- **Genre Analysis**: Most popular content genres
+- **Geographic Analysis**: Countries contributing most content
+- **Duration Analysis**: Movie lengths and TV show seasons
+- **Rating Analysis**: Content rating distribution
+- **Visualizations**: Comprehensive charts and graphs
 
-## 🔧 Technical Features
+## Features
 
-### **Modular Design**
-- Object-oriented `NetflixEDA` class for clean, maintainable code
-- Separate modules for data loading, cleaning, analysis, and visualization
-- Flexible data path handling for different dataset locations
+- Modular, object-oriented design with `NetflixEDA` class
+- Flexible data loading (works with any Netflix dataset format)
+- Comprehensive data cleaning and preprocessing
+- Statistical analysis and insights
+- Beautiful visualizations using matplotlib and seaborn
+- Export charts as high-quality PNG files
 
-### **Comprehensive Data Processing**
-- **Data Loading**: Flexible CSV loading with error handling
-- **Data Cleaning**: Missing value handling, duplicate removal, data type conversions
-- **Data Validation**: Comprehensive data quality checks and reporting
+## Installation
 
-### **Advanced Analytics**
-- **Content Type Analysis**: Movies vs TV Shows distribution with percentages
-- **Release Trend Analysis**: Year-over-year content release patterns
-- **Genre Analysis**: Top 10 most popular content genres
-- **Geographic Analysis**: Top 15 countries by content contribution
-- **Duration Analysis**: Separate analysis for movies (minutes) and TV shows (seasons)
-- **Rating Analysis**: Content rating distribution across all categories
+### Option 1: Using pip
 
-### **Rich Visualizations**
-- **Bar Charts**: Content types, top genres, top countries
-- **Line Plots**: Release trends over time
-- **Histograms**: Duration distributions for movies and TV shows
-- **Pie Charts**: Rating distribution
-- **Heatmaps**: Releases by year and month
-- **High-Quality Output**: 300 DPI PNG files for presentations
-
-## 📁 Project Structure
-
-```
-netflix-eda-project/
-├── netflix_eda.py          # Main analysis script (500+ lines)
-├── requirements.txt         # pip dependencies
-├── environment.yml         # conda environment specification
-├── README.md              # Project documentation
-├── netflix_titles.csv     # Sample dataset (1,000 records)
-└── Generated Visualizations:
-    ├── netflix_analysis_overview.png
-    ├── netflix_duration_ratings.png
-    └── netflix_heatmap.png
+1. Clone or download this repository
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
 ```
 
-## 🚀 Key Capabilities
+### Option 2: Using conda
 
-### **Data Analysis Modules**
-1. **Data Loading & Cleaning Module**
-   - Flexible CSV loading with comprehensive error handling
-   - Missing value analysis and intelligent handling
-   - Duplicate detection and removal
-   - Data type conversions and validation
+1. Clone or download this repository
+2. Create conda environment:
+```bash
+conda env create -f environment.yml
+conda activate netflix-eda
+```
 
-2. **Exploratory Data Analysis Module**
-   - Content type distribution analysis
-   - Release trend analysis over years
-   - Genre popularity analysis
-   - Country contribution analysis
-   - Duration pattern analysis
-   - Rating distribution analysis
+## Usage
 
-3. **Visualization Module**
-   - Professional-quality charts and graphs
-   - Multiple visualization types (bar, line, histogram, pie, heatmap)
-   - Customizable styling and color schemes
-   - High-resolution output for presentations
+### Basic Usage
 
-### **Output Features**
-- **Console Reports**: Detailed statistical analysis and insights
-- **Visualization Files**: 3 high-quality PNG files
-- **Data Summary**: Comprehensive dataset overview and statistics
-- **Missing Value Reports**: Before and after cleaning analysis
+1. Place your Netflix dataset CSV file in the project directory (rename it to `netflix_titles.csv`)
+2. Run the analysis:
+```bash
+python netflix_eda.py
+```
 
-## 📊 Sample Analysis Results
+### Custom Dataset Path
 
-Based on the sample dataset (1,000 records):
+To use a different dataset path, modify the `data_path` variable in the `main()` function:
 
-- **Content Distribution**: 52.5% Movies, 47.5% TV Shows
-- **Top Genres**: Sci-Fi & Fantasy, Comedies, Action & Adventure
-- **Top Countries**: South Korea, France, Japan, India
-- **Movie Duration**: Average 117.3 minutes (range: 60-180 min)
-- **TV Shows**: Average 4.5 seasons (range: 1-8 seasons)
-- **Release Years**: 1990-2023 with peak activity in 2014-2015
+```python
+def main():
+    data_path = "path/to/your/netflix_dataset.csv"  # Change this path
+    netflix_eda = NetflixEDA(data_path)
+    netflix_eda.run_complete_analysis()
+```
 
-## 🛠️ Technical Requirements
+### Programmatic Usage
 
-- **Python 3.7+**
-- **Core Libraries**: pandas, numpy, matplotlib, seaborn
-- **Optional**: jupyter for interactive analysis
-- **Dependencies Management**: Both pip and conda support
+```python
+from netflix_eda import NetflixEDA
 
-## 📈 Use Cases
+# Create instance
+eda = NetflixEDA("netflix_titles.csv")
 
-This project is perfect for:
-- **Data Scientists** learning EDA techniques
-- **Business Analysts** analyzing content trends
-- **Students** studying data analysis with Python
-- **Researchers** examining streaming content patterns
-- **Content Creators** understanding market trends
+# Run complete analysis
+eda.run_complete_analysis()
 
-## 🎓 Learning Outcomes
+# Or run individual components
+eda.load_data()
+eda.clean_data()
+eda.analyze_content_types()
+eda.create_visualizations()
+```
 
-Users will gain experience with:
-- **Data Cleaning** and preprocessing techniques
-- **Statistical Analysis** and data exploration
-- **Data Visualization** with matplotlib and seaborn
-- **Object-Oriented Programming** in Python
-- **Project Structure** and documentation
-- **Dependency Management** with pip and conda
+## Expected Dataset Format
 
-## 🔄 Extensibility
+The script expects a CSV file with the following columns:
+- `show_id`: Unique identifier
+- `type`: Content type (Movie/TV Show)
+- `title`: Content title
+- `director`: Director name(s)
+- `cast`: Cast members
+- `country`: Country of origin
+- `date_added`: Date added to Netflix
+- `release_year`: Year of release
+- `rating`: Content rating
+- `duration`: Duration (minutes for movies, seasons for TV shows)
+- `listed_in`: Genres/categories
 
-The modular design allows for easy extension:
-- Add new analysis modules
-- Customize visualizations
-- Integrate with other datasets
-- Add machine learning components
-- Export to different formats
+## Output Files
 
-This project provides a solid foundation for Netflix data analysis and serves as an excellent template for similar EDA projects in the entertainment industry.
+The analysis generates the following visualization files:
+
+1. **`netflix_analysis_overview.png`**: Overview dashboard with content types, release trends, top genres, and top countries
+2. **`netflix_duration_ratings.png`**: Duration distributions and rating analysis
+3. **`netflix_heatmap.png`**: Heatmap showing releases by year and month
+
+## Sample Output
+
+The script provides detailed console output including:
+
+- Dataset overview and statistics
+- Missing value analysis
+- Content type distribution
+- Release trend analysis
+- Top genres and countries
+- Duration statistics
+- Rating distribution
+- Visualization generation status
+
+## Requirements
+
+- Python 3.7+
+- pandas
+- numpy
+- matplotlib
+- seaborn
+- jupyter (optional, for interactive use)
+
+## Dataset Sources
+
+You can obtain Netflix datasets from:
+- [Kaggle Netflix Dataset](https://www.kaggle.com/datasets/shivamb/netflix-shows)
+- [Netflix Movies and TV Shows](https://www.kaggle.com/datasets/netflix-inc/netflix-prize-data)
+
+## Contributing
+
+Feel free to submit issues, feature requests, or pull requests to improve this project.
+
+## License
+
+This project is open source and available under the MIT License.
